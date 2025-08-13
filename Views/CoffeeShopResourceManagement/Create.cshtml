@@ -1,0 +1,21 @@
+﻿@model CoffeeShopWeb.Models.Resource
+
+<h2>Create Resource</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div>@TempData["Success"]</div>
+}
+
+<form asp-action="Create" method="post">
+    <div><label>Name</label><input asp-for="Name" required /></div>
+    <div><label>Quantity</label><input asp-for="Quantity" type="number" required /></div>
+    <div><label>Unit</label><input asp-for="Unit" required /></div>
+    <div>
+        <label>Category</label>
+        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))"></select>
+    </div>
+    <button type="submit">Create</button>
+</form>
+
+<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">quay về</a>

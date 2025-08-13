@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CoffeeShopWeb.Models.Transaction>
+
+<h2>Transaction History</h2>
+
+<form method="get">
+    From: <input type="date" name="from" />
+    To: <input type="date" name="to" />
+    <button type="submit">Filter</button>
+</form>
+
+<table>
+    <thead><tr><th>Id</th><th>Date</th><th>Staff</th><th>Total</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.Date.ToLocalTime()</td>
+                <td>@t.StaffId</td>
+                <td>@t.TotalAmount.ToString("C")</td>
+                <td><a asp-action="Details" asp-route-id="@t.Id">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

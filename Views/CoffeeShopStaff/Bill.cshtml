@@ -1,0 +1,24 @@
+﻿@model CoffeeShopWeb.Models.BillViewModel
+
+<h2>Bill</h2>
+<div>Transaction: @Model.TransactionId</div>
+<div>Date: @Model.Date.ToLocalTime()</div>
+<div>Staff: @Model.StaffId</div>
+
+<table>
+    <thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Line</th></tr></thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.LineTotal.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div><strong>Total: </strong>@Model.Total.ToString("C")</div>
+<a asp-controller="CoffeeShopStaff" asp-action="Index">Back to POS</a>

@@ -1,0 +1,78 @@
+﻿@using System.Collections.Generic
+@{
+    var chartData = ViewBag.CategoryChartData as IEnumerable<dynamic>;
+    // Layout = null; // Nếu bạn dùng Layout thì bỏ dòng này
+}
+
+<link rel="stylesheet" href="~/css/admin.css">
+
+<div class="admin-container">
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a asp-controller="CoffeeShopMenuManagement" asp-action="Index">Manage Menu</a></li>
+            <li><a asp-controller="CoffeeShopResourceManagement" asp-action="Index">Manage Resource</a></li>
+            <li><a asp-controller="CoffeeShopStaffManagement" asp-action="Index">Manage Staff</a></li>
+            <li><a asp-controller="CoffeeShopManagerManagement" asp-action="Index">Manage Managers</a></li>
+            <li><a asp-controller="CoffeeShopAccount" asp-action="Logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="admin-content">
+        <h2>Admin Dashboard</h2>
+        <hr />
+        <h3>Products by Category</h3>
+        <canvas id="categoryChart" style="max-width: 500px; margin: 20px auto;"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    var ctx = document.getElementById('categoryChart').getContext('2d');
+
+    var dataLabels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(chartData.Select(c => (string)c.CategoryName)));
+    var dataCounts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(chartData.Select(c => (int)c.ProductCount)));
+
+    var chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                label: 'Products by Category',
+                data: dataCounts,
+                backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { 
+                    position: 'bottom',
+                    labels: {
+                        color: '#fff', // label màu trắng
+                        font: { size: 14 }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Products by Category',
+                    color: '#fff', // tiêu đề màu trắng
+                    font: { size: 18 }
+                },
+                datalabels: {
+                    color: '#fff',
+                    font: { weight: 'bold', size: 18 },
+                    formatter: (value, ctx) => {
+                        let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        let percentage = (value * 100 / sum).toFixed(1) + "%";
+                        return percentage;
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+</script>

@@ -1,0 +1,41 @@
+﻿@model CoffeeShopWeb.Models.CoffeeShopLoginViewModel
+<link rel="stylesheet" href="~/css/login.css">
+<script src="~/js/login.js"></script>
+
+<div class="login-wrapper">
+    <!-- Left: Form -->
+    <div class="login-container">
+        <h2>Login</h2>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+
+        <form asp-action="Login" method="post">
+            <div>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" required />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" id="password" required />
+                <button type="button" class="show-hide-btn" onclick="togglePassword()">Show/Hide</button>
+            </div>
+            <div>
+                <label><input asp-for="RememberMe" /> Remember Me</label>
+            </div>
+            <button type="submit">Login</button>
+            <a asp-action="ForgotPassword">Forgot Password?</a>
+        </form>
+    </div>
+
+    <!-- Right: Image -->
+    <div class="login-image" style="background-image: url('/images/login-background.png');">
+    </div>
+</div>

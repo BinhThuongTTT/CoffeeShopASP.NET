@@ -1,0 +1,49 @@
+﻿@using CoffeeShopWeb.Models
+@inject CoffeeShopWeb.Services.IStaffBillingService BillingService
+@{
+    var cart = await BillingService.GetCartAsync(Context.Session);
+}
+
+@if (cart == null || !cart.Any())
+{
+    <div>Cart is empty</div>
+}
+else
+{
+    <table>
+        <thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Total</th><th></th></tr></thead>
+        <tbody>
+            @foreach (var item in cart)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <form asp-action="UpdateCartItem" method="post" style="display:inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="0" style="width:60px" />
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.LineTotal.ToString("C")</td>
+                    <td>
+                        <form asp-action="RemoveCartItem" method="post" style="display:inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div style="margin-top:10px;">
+        <strong>Total: </strong> @cart.Sum(i => i.LineTotal).ToString("C")
+    </div>
+
+    <form asp-action="Checkout" method="get" style="margin-top:10px;">
+        <button type="submit">Checkout</button>
+    </form>
+}

@@ -1,0 +1,20 @@
+﻿<h2>Create Admin User</h2>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+<form asp-action="CreateAdmin" method="post">
+    <div>
+        <label>Email</label>
+        <input name="email" type="email" required />
+    </div>
+    <div>
+        <label>Password</label>
+        <input name="password" type="password" required />
+    </div>
+    <button type="submit">Create Admin</button>
+</form>

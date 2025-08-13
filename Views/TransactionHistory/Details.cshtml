@@ -1,0 +1,22 @@
+﻿@model CoffeeShopWeb.Models.Transaction
+
+<h2>Transaction #@Model.Id</h2>
+<div>Date: @Model.Date.ToLocalTime()</div>
+<div>Staff: @Model.StaffId</div>
+
+<table>
+    <thead><tr><th>ProductId</th><th>Qty</th><th>Price</th><th>Line</th></tr></thead>
+    <tbody>
+        @foreach (var i in Model.Items)
+        {
+            <tr>
+                <td>@i.ProductId</td>
+                <td>@i.Quantity</td>
+                <td>@i.Price.ToString("C")</td>
+                <td>@(i.Price* i.Quantity).ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div><strong>Total:</strong> @Model.TotalAmount.ToString("C")</div>
+<a asp-controller="TransactionHistory" asp-action="Index">Back</a>

@@ -1,0 +1,25 @@
+﻿@model CoffeeShopWeb.Models.BillViewModel
+
+<h2>Checkout</h2>
+
+<table>
+    <thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Line</th></tr></thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.LineTotal.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div><strong>Total: </strong>@Model.Total.ToString("C")</div>
+
+<form asp-action="ConfirmPayment" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit">Confirm Payment</button>
+</form>
