@@ -1,13 +1,14 @@
 ﻿@model CoffeeShopWeb.Models.Resource
+<link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
 
-<h2>Create Resource</h2>
+<h2>Create Product</h2>
 
 @if (TempData["Success"] != null)
 {
-    <div>@TempData["Success"]</div>
+    <div class="success">@TempData["Success"]</div>
 }
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div><label>Name</label><input asp-for="Name" required /></div>
     <div><label>Quantity</label><input asp-for="Quantity" type="number" required /></div>
     <div><label>Unit</label><input asp-for="Unit" required /></div>
@@ -17,5 +18,6 @@
     </div>
     <button type="submit">Create</button>
 </form>
+<br>
 
-<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">quay về</a>
+<a asp-controller="CoffeeShopResourceManagement" asp-action="Index" class="back-button">⬅ Back</a>

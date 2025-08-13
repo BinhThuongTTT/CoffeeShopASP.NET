@@ -1,4 +1,5 @@
 ﻿@model CoffeeShopWeb.Models.Resource
+<link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
 
 <h2>Delete Resource</h2>
 
@@ -11,8 +12,8 @@
 
 <form asp-action="DeleteConfirmed" method="post">
     <input type="hidden" asp-for="Id" />
-    <button type="submit" name="decision" value="Yes">Yes</button>
-    <button type="submit" name="decision" value="No">No</button>
+    <button type="submit" name="decision" value="Yes" class="decision-yes">Yes</button>
+    <button type="submit" name="decision" value="No" class="decision-no">No</button>
 </form>
-
-<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">quay về</a>
+<br>
+<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button" >⬅ Back</a>

@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/admin.css">
+
+<div class="admin-container">
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a asp-controller="CoffeeShopMenuManagement" asp-action="Index">Manage Menu</a></li>
+            <li><a asp-controller="CoffeeShopResourceManagement" asp-action="Index">Manage Resource</a></li>
+            <li><a asp-controller="CoffeeShopStaffManagement" asp-action="Index">Manage Staff</a></li>
+            <li><a asp-controller="CoffeeShopManagerManagement" asp-action="Index">Manage Managers</a></li>
+            <li><a asp-controller="CoffeeShopAccount" asp-action="Logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="admin-content">
+        @RenderBody()
+    </div>
+</div>

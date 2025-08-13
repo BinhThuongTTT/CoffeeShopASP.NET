@@ -1,66 +1,148 @@
-﻿:root {
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
     --main-color: #b07c50;
     --black: #13131a;
     --bg: #010103;
     --border: .1rem solid rgba(255,255,255,.3);
 }
 
-body {
+* {
+    font-family: "Roboto Mono", monospace;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--bg);
-    color: white;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
 }
 
-.admin-container {
+body {
+    background-color: var(--bg);
+    color: white;
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
 }
 
-.admin-sidebar {
-    width: 220px;
+/* Wrapper for login */
+.login-wrapper {
+    display: flex;
     background-color: var(--black);
-    border-right: var(--border);
-    padding: 1rem;
-    box-sizing: border-box;
+    border: var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    max-width: 900px;
+    width: 100%;
+    min-height: 500px;
 }
 
-    .admin-sidebar h2 {
+/* Left: Login Form */
+.login-container {
+    flex: 1;
+    padding: 2rem;
+}
+
+    .login-container h2 {
         color: var(--main-color);
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .login-container form div {
         margin-bottom: 1rem;
     }
 
-    .admin-sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-        .admin-sidebar ul li {
-            margin-bottom: 1rem;
-        }
-
-    .admin-sidebar a {
-        color: white;
-        text-decoration: none;
-        padding: 0.5rem;
+    .login-container label {
         display: block;
-        border-radius: 0.5rem;
-        transition: background 0.3s;
+        margin-bottom: 0.3rem;
+        font-size: 0.9rem;
     }
 
-        .admin-sidebar a:hover {
-            background-color: var(--main-color);
+    .login-container input[type="email"],
+    .login-container input[type="password"] {
+        width: 100%;
+        padding: 0.5rem;
+        background: transparent;
+        border: var(--border);
+        border-radius: 0.5rem;
+        color: white;
+    }
+
+    .login-container input[type="checkbox"] {
+        margin-right: 0.5rem;
+    }
+
+    .login-container button[type="submit"] {
+        width: 100%;
+        padding: 0.7rem;
+        background: var(--main-color);
+        color: white;
+        font-weight: bold;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+        .login-container button[type="submit"]:hover {
+            background: #d9a87c;
         }
 
-.admin-content {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto;
+.show-hide-btn {
+    margin-top: 0.3rem;
+    background: none;
+    color: var(--main-color);
+    cursor: pointer;
+    font-size: 0.8rem;
 }
 
-canvas {
-    background-color: transparent;
-    border-radius: 10px;
-    padding: 10px;
+.alert {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+}
+
+.alert-success {
+    background-color: rgba(0,255,0,0.2);
+    color: lightgreen;
+}
+
+.alert-danger {
+    background-color: rgba(255,0,0,0.2);
+    color: pink;
+}
+
+.login-container a {
+    display: inline-block;
+    margin-top: 0.8rem;
+    color: var(--main-color);
+    font-size: 0.9rem;
+}
+
+    .login-container a:hover {
+        text-decoration: underline;
+    }
+
+/* Right: Image */
+.login-image {
+    flex: 1;
+    background-image: url('/images/login-background.png'); /* FIX: remove /wwwroot */
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column;
+        max-width: 95%;
+    }
+
+    .login-image {
+        height: 200px;
+    }
 }

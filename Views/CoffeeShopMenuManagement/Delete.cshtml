@@ -1,14 +1,17 @@
 ﻿@model CoffeeShopWeb.Models.Product
+<link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
+
 <h2>Delete Product</h2>
 @if (TempData["Error"] != null)
 {
-    <div class="error" style="color: red;">@TempData["Error"]</div>
+    <div class="error">@TempData["Error"]</div>
 }
+
 <div>Are you sure you want to delete "@Model.Name"? This action cannot be undone.</div>
 <form asp-action="DeleteConfirmed" method="post">
     <input type="hidden" asp-for="Id" />
-    <button type="submit" name="decision" value="Yes">Yes</button>
-    <button type="submit" name="decision" value="No">No</button>
+    <button type="submit" name="decision" value="Yes" class="decision-yes">Yes</button>
+    <button type="submit" name="decision" value="No" class="decision-no">No</button>
 </form>
-
-<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">quay về</a>
+<br>
+<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button" >⬅ Back</a>

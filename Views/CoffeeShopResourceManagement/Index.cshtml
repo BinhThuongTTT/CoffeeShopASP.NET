@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<CoffeeShopWeb.Models.Resource>
-
+<link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 <h2>Resources</h2>
 
 @if (TempData["Success"] != null)
@@ -7,7 +10,7 @@
     <div>@TempData["Success"]</div>
 }
 
-<a asp-action="Create">Create New Resource</a>
+<a asp-action="Create" class="add-button">+ Add Resource</a>
 <table>
     <thead>
         <tr>
@@ -34,5 +37,5 @@
         }
     </tbody>
 </table>
-
-<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">quay về</a>
+<br>
+<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">⬅ Back</a>
