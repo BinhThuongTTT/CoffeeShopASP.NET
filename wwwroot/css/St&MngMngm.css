@@ -7,6 +7,13 @@
     --border: .1rem solid rgba(255, 255, 255, .3);
 }
 
+* {
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Roboto Mono", monospace;
     background-color: var(--bg);
