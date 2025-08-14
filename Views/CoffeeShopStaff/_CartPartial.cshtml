@@ -23,7 +23,9 @@ else
                         <form asp-action="UpdateCartItem" method="post" style="display:inline">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="productId" value="@item.ProductId" />
-                            <input type="number" name="quantity" value="@item.Quantity" min="0" style="width:60px" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="0" style="width:60px; display:block" />
+                            <br />
+                            <br />
                             <button type="submit">Update</button>
                         </form>
                     </td>

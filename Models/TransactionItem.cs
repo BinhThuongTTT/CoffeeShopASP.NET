@@ -8,7 +8,7 @@ namespace CoffeeShopWeb.Models
         public int TransactionId { get; set; }
         [ForeignKey("TransactionId")]
         public Transaction? Transaction { get; set; }
-
+        public Product? Product { get; set; }
         public int ProductId { get; set; }
         // optional navigation to Product
         // public Product? Product { get; set; }

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CoffeeShopWeb.Models.Transaction>
+@{
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/StaffStyle/Details.css" />
+
+<h2>Lịch sử giao dịch thanh toán</h2>
+
+@if (!Model.Any())
+{
+    <p class="no-data">Không có giao dịch nào.</p>
+}
+else
+{
+    <table class="transaction-table">
+        <thead>
+            <tr>
+                <th>Ngày</th>
+                <th>Tổng tiền</th>
+                <th>Số lượng sản phẩm</th>
+                <th>Các sản phẩm mua / SL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                var totalProducts = transaction.Items.Sum(i => i.Quantity);
+                <tr>
+                    <td>@transaction.Date.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@transaction.TotalAmount.ToString("N0") đ</td>
+                    <td>@totalProducts</td>
+                    <td>
+                        <ul>
+                            @foreach (var item in transaction.Items)
+                            {
+                                <li>@item.Product?.Name - @item.Quantity</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,393 @@
+﻿/* ========== GLOBAL ========== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+    --main-color: #b07c50;
+    --black: #13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255,255,255,.3);
+}
+
+* {
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 9rem;
+}
+
+body {
+    background: var(--bg);
+    color: #fff;
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 7%;
+    border-bottom: var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+    .header .logo img {
+        height: 6rem;
+    }
+
+    .header .navbar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+        .header .navbar a {
+            font-size: 1.6rem;
+            color: #fff;
+            margin: 0 0.5rem;
+        }
+
+            .header .navbar a:hover {
+                color: var(--main-color);
+                border-bottom: 2px solid var(--main-color);
+            }
+
+/* User greeting + Logout */
+.user-greeting {
+    font-size: 1.5rem;
+    color: #ffd1b3;
+    margin-left: 1rem;
+}
+
+.logout-btn,
+.login-btn,
+.register-btn {
+    background: var(--main-color);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+    .logout-btn:hover,
+    .login-btn:hover,
+    .register-btn:hover {
+        background: #fff;
+        color: var(--main-color);
+    }
+
+/* ========== HOME ========== */
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url('../images/home-img.jpg') no-repeat center/cover;
+    padding: 0 7%;
+}
+
+    .home .content h3 {
+        font-size: 6rem;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    .home .content p {
+        font-size: 2rem;
+        margin-top: 1rem;
+        color: #fff;
+        max-width: 60rem;
+    }
+
+/* ========== ABOUT ========== */
+.about {
+    padding: 5rem 7%;
+    background: var(--bg);
+}
+
+    .about .heading {
+        text-align: center;
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 3rem;
+    }
+
+        .about .heading span {
+            color: var(--main-color);
+        }
+
+    .about .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2rem;
+    }
+
+        .about .row .image {
+            flex: 1 1 40rem;
+            text-align: center;
+        }
+
+            .about .row .image img {
+                width: 100%;
+                max-width: 500px;
+                border-radius: 0.5rem;
+                border: 2px solid var(--main-color);
+            }
+
+        .about .row .content {
+            flex: 1 1 40rem;
+        }
+
+            .about .row .content h3 {
+                font-size: 2.5rem;
+                color: #fff;
+                margin-bottom: 1rem;
+            }
+
+            .about .row .content p {
+                font-size: 1.6rem;
+                color: #ccc;
+                margin-bottom: 1.5rem;
+                line-height: 1.8;
+            }
+
+            .about .row .content .btn {
+                background: var(--main-color);
+                color: #fff;
+                padding: 0.6rem 1.5rem;
+                font-size: 1.4rem;
+                border-radius: 0.3rem;
+            }
+
+                .about .row .content .btn:hover {
+                    background: #fff;
+                    color: var(--main-color);
+                }
+
+/* ========== MENU & PRODUCTS ========== */
+.menu .heading {
+    text-align: center;
+    font-size: 4rem; /* tăng kích thước chữ */
+    color: #fff;
+    margin-bottom: 3rem;
+    text-transform: uppercase; /* chữ in hoa */
+}
+
+.menu .heading span {
+    color: var(--main-color); /* màu cam */
+}
+
+.menu .box-container,
+.products .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    gap: 1.5rem;
+}
+
+.menu .box {
+    background: var(--black);
+    text-align: center;
+    padding: 2rem;
+    border: var(--border);
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu .box, .products .box {
+    background: var(--black);
+    text-align: center;
+    padding: 2rem;
+    border: var(--border);
+    border-radius: 0.5rem;
+}
+
+    .menu .box::before {
+        content: "★ Special";
+        position: absolute;
+        top: 1rem;
+        right: -4rem;
+        background: var(--main-color);
+        color: #fff;
+        padding: 0.5rem 2rem;
+        font-size: 1.2rem;
+        transform: rotate(45deg);
+    }
+
+    .menu .box:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 0 25px var(--main-color);
+    }
+
+    .menu .box img,
+    .products .box img {
+        width: 100%;
+        max-width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        border: 2px solid var(--main-color);
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .menu .box img:hover,
+        .products .box img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--main-color);
+        }
+
+    .menu .box h3,
+    .products .box h3 {
+        font-size: 2rem;
+        color: #fff;
+    }
+
+    .menu .box .price,
+    .products .box .price {
+        font-size: 2rem;
+        color: var(--main-color);
+        margin: 0.5rem 0;
+    }
+
+    .menu .box .btn,
+    .products .box .btn {
+        background: var(--main-color);
+        color: #fff;
+        padding: 0.6rem 1.5rem;
+        font-size: 1.4rem;
+        border-radius: 0.3rem;
+    }
+
+        .menu .box .btn:hover,
+        .products .box .btn:hover {
+            background: #fff;
+            color: var(--main-color);
+        }
+
+    /* Icons for products */
+    .products .box .icons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+        .products .box .icons a {
+            background: transparent;
+            color: #fff;
+            border: var(--border);
+            margin: 0 0.3rem;
+            height: 4rem;
+            width: 4rem;
+            line-height: 4rem;
+            border-radius: 50%;
+            font-size: 1.6rem;
+        }
+
+            .products .box .icons a:hover {
+                background: var(--main-color);
+                color: #fff;
+            }
+
+/* ========== FOOTER ========== */
+.footer {
+    background: var(--black);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+    .footer .share a {
+        margin: 0 0.3rem;
+        color: #fff;
+        font-size: 1.8rem;
+    }
+
+        .footer .share a:hover {
+            color: var(--main-color);
+        }
+
+/* ========== ABOUT ========== */
+.about {
+    padding: 5rem 7%;
+    background: var(--bg);
+}
+
+    .about .heading {
+        text-align: center;
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 3rem;
+    }
+
+        .about .heading span {
+            color: var(--main-color);
+        }
+
+    .about .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2rem;
+    }
+
+        .about .row .image {
+            flex: 1 1 40rem;
+            text-align: center;
+        }
+
+            .about .row .image img {
+                width: 100%;
+                max-width: 500px;
+                border-radius: 0.5rem;
+                border: 2px solid var(--main-color);
+            }
+
+        .about .row .content {
+            flex: 1 1 40rem;
+        }
+
+            .about .row .content h3 {
+                font-size: 2.5rem;
+                color: #fff;
+                margin-bottom: 1rem;
+            }
+
+            .about .row .content p {
+                font-size: 1.6rem;
+                color: #ccc;
+                margin-bottom: 1.5rem;
+                line-height: 1.8;
+            }
+
+            .about .row .content .btn {
+                background: var(--main-color);
+                color: #fff;
+                padding: 0.6rem 1.5rem;
+                font-size: 1.4rem;
+                border-radius: 0.3rem;
+            }
+
+                .about .row .content .btn:hover {
+                    background: #fff;
+                    color: var(--main-color);
+                }

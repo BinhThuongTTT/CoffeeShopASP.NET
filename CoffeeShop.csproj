@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\product\" />
+  </ItemGroup>
+
 </Project>

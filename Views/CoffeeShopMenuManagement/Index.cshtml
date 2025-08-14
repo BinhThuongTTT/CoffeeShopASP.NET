@@ -25,6 +25,16 @@
         @foreach (var product in Model)
         {
             <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(product.ImagePath))
+                    {
+                        <img src="@product.ImagePath" alt="@product.Name" style="width:80px; height:80px; object-fit:cover;" />
+                    }
+                    else
+                    {
+                        <span>No image</span>
+                    }
+                </td>
                 <td>@product.Name</td>
                 <td>@product.Price</td>
                 <td>

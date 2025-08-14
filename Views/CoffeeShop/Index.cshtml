@@ -1,0 +1,48 @@
+﻿@model List<CoffeeShopWeb.Models.Product>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- home -->
+<section class="home" id="home">
+    <div class="content">
+        <h3>fresh coffee in the morning</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+        <a asp-controller="Products" asp-action="Index" class="btn">Get It Now</a>
+    </div>
+</section>
+
+<!-- about -->
+<section class="about" id="about">
+    <h1 class="heading"><span> VỀ </span> CHÚNG TÔI </h1>
+    <div class="row">
+        <div class="image">
+            <img src="~/images/about-img.png" alt="Cửa hàng cà phê">
+        </div>
+        <div class="content">
+            <h3>Điều gì làm cà phê của chúng tôi đặc biệt?</h3>
+            <p>
+                Tại cửa hàng của chúng tôi, chúng tôi chỉ lựa chọn những hạt cà phê Arabica chất lượng cao từ các nông trại bền vững trên khắp thế giới.
+                Mỗi tách cà phê đều được các barista giàu kinh nghiệm chăm chút tỉ mỉ, mang đến hương vị đậm đà và trải nghiệm thưởng thức tuyệt vời.
+                Từ hạt cà phê xay mới đến sữa đánh nóng hoàn hảo, từng chi tiết đều được chú trọng.
+            </p>
+            <a asp-controller="Home" asp-action="About" class="content">Tìm hiểu thêm</a>
+        </div>
+    </div>
+</section>
+
+<!-- menu -->
+<section class="menu" id="menu">
+    <h1 class="heading">OUR<span>MENU</span></h1>
+    <div class="box-container">
+        @foreach (var product in Model)
+        {
+            <div class="box">
+                <img src="@product.ImagePath" alt="@product.Name" />
+                <h3>@product.Name</h3>
+                <div class="price">$@product.Price</div>
+                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" class="btn">add to cart</a>
+            </div>
+        }
+    </div>
+</section>

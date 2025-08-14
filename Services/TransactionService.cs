@@ -14,7 +14,8 @@ namespace CoffeeShopWeb.Services
 
         public async Task<int> CreateTransactionAsync(string? staffId, List<BillingItem> items)
         {
-            if (items == null || items.Count == 0) throw new ArgumentException("No items to create transaction.");
+            if (items == null || items.Count == 0)
+                throw new ArgumentException("No items to create transaction.");
 
             using var tx = await _context.Database.BeginTransactionAsync();
             try
@@ -52,16 +53,29 @@ namespace CoffeeShopWeb.Services
 
         public async Task<IEnumerable<Transaction>> GetTransactionsAsync(DateTime? from = null, DateTime? to = null, string? staffId = null)
         {
-            var q = _context.Transactions.Include(t => t.Items).AsQueryable();
-            if (from.HasValue) q = q.Where(t => t.Date >= from.Value);
-            if (to.HasValue) q = q.Where(t => t.Date <= to.Value);
-            if (!string.IsNullOrEmpty(staffId)) q = q.Where(t => t.StaffId == staffId);
+            var q = _context.Transactions
+                .Include(t => t.Items)
+                    .ThenInclude(i => i.Product) // lấy luôn thông tin sản phẩm
+                .AsQueryable();
+
+            if (from.HasValue)
+                q = q.Where(t => t.Date >= from.Value);
+
+            if (to.HasValue)
+                q = q.Where(t => t.Date <= to.Value);
+
+            if (!string.IsNullOrEmpty(staffId))
+                q = q.Where(t => t.StaffId == staffId);
+
             return await q.OrderByDescending(t => t.Date).ToListAsync();
         }
 
         public async Task<Transaction?> GetTransactionByIdAsync(int id)
         {
-            return await _context.Transactions.Include(t => t.Items).FirstOrDefaultAsync(t => t.Id == id);
+            return await _context.Transactions
+                .Include(t => t.Items)
+                    .ThenInclude(i => i.Product) // lấy tên sản phẩm
+                .FirstOrDefaultAsync(t => t.Id == id);
         }
     }
 }

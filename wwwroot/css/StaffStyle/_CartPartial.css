@@ -15,7 +15,7 @@
 }
 
 table {
-    width: 100%;
+    width: 180px;
     border-collapse: collapse;
     background: var(--black);
     border: var(--border);

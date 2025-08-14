@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShopWeb.Controllers
 {
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Roles = "Admin, Staff")]
     public class TransactionHistoryController : Controller
     {
         private readonly ITransactionService _transactionService;
