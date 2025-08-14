@@ -1,17 +1,19 @@
 ﻿@model List<CoffeeShopWeb.Models.Product>
+
 <link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
+
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h2>Menu Management</h2>
 
-@if (TempData["Success"] != null)
+@if (TempData != null && TempData["Success"] != null)
 {
-    <div>@TempData["Success"]</div>
+    <div class="toast success">@TempData["Success"]</div>
 }
 <a asp-action="Create" class="add-button">+ Add Product</a>
 
-<table>
+<table class="management-table">
     <thead>
         <tr>
             <th>Name</th>

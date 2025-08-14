@@ -1,9 +1,13 @@
 ﻿@model IEnumerable<CoffeeShopWeb.Models.Product>
 @using CoffeeShopWeb.Models
+@{
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/StaffStyle/Index.css" />
 
 <h2>POS - Staff</h2>
-<div style="display:flex; gap:20px;">
-    <div style="flex:2;">
+<div class="staff-container">
+    <div class="staff-products">
         <h3>Products</h3>
         <table>
             <thead><tr><th>Name</th><th>Price</th><th>Action</th></tr></thead>
@@ -26,8 +30,7 @@
             </tbody>
         </table>
     </div>
-
-    <div style="flex:1; border-left:1px solid #444; padding-left:16px;">
+    <div class="staff-cart">
         <h3>Cart</h3>
         @await Html.PartialAsync("_CartPartial")
     </div>

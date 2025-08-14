@@ -1,17 +1,19 @@
-﻿@model IEnumerable<CoffeeShopWeb.Models.Resource>
+﻿@model List<CoffeeShopWeb.Models.Resource>
+
 <link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
+
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>Resources</h2>
+<h2>Resource Management</h2>
 
-@if (TempData["Success"] != null)
+@if (TempData != null && TempData["Success"] != null)
 {
-    <div>@TempData["Success"]</div>
+    <div class="toast success">@TempData["Success"]</div>
 }
-
 <a asp-action="Create" class="add-button">+ Add Resource</a>
-<table>
+
+<table class="management-table">
     <thead>
         <tr>
             <th>Name</th>
@@ -22,16 +24,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var resource in Model)
         {
             <tr>
-                <td>@item.Name</td>
-                <td>@item.Quantity</td>
-                <td>@item.Unit</td>
-                <td>@item.Category?.Name</td>
+                <td>@resource.Name</td>
+                <td>@resource.Quantity</td>
+                <td>@resource.Unit</td>
+                <td>@(resource.Category?.Name ?? "None")</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@resource.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@resource.Id">Delete</a>
                 </td>
             </tr>
         }

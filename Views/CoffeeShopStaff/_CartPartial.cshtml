@@ -1,5 +1,7 @@
 ﻿@using CoffeeShopWeb.Models
 @inject CoffeeShopWeb.Services.IStaffBillingService BillingService
+<link rel="stylesheet" href="~/css/StaffStyle/_CartPartial.css" />
+
 @{
     var cart = await BillingService.GetCartAsync(Context.Session);
 }

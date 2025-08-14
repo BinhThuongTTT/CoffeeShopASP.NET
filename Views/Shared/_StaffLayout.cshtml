@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="~/css/StaffStyle/StaffLayout.css" />
+
+<div class="staff-wrapper">
+    
+    <div class="staff-container">
+        <!-- Sidebar -->
+        <div class="staff-sidebar">
+            <h2>Staff</h2>
+            <ul>
+                <li><a asp-controller="CoffeeShopStaff" asp-action="Index">POS</a></li>
+                <li><a asp-controller="CoffeeShopStaff" asp-action="Checkout">Checkout</a></li>
+                <li><a asp-controller="CoffeeShopStaff" asp-action="Bill" asp-route-id="0">Bill History</a></li>
+                <li><a asp-controller="CoffeeShopAccount" asp-action="Logout">Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+        <div class="staff-content">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.staff-sidebar');
+        sidebar.classList.toggle('active');
+    }
+</script>

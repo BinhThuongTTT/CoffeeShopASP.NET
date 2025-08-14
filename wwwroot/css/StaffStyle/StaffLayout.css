@@ -1,0 +1,72 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+    --main-color: #b07c50;
+    --black: #13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255, 255, 255, .3);
+}
+
+* {
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: var(--bg) !important;
+    color: white !important;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.staff-container {
+    display: flex;
+    height: 100vh;
+}
+
+.staff-sidebar {
+    width: 180px; /* [MODIFIED] Reduced from 250px to 180px for smaller size */
+    background-color: var(--black);
+    padding: 1rem;
+    border-right: var(--border);
+}
+
+    .staff-sidebar h2 {
+        color: var(--main-color);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        font-size: 1.5rem; /* [MODIFIED] Increased from default to 1.5rem for clearer title */
+    }
+
+    .staff-sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .staff-sidebar li {
+        margin-bottom: 0.5rem; /* [MODIFIED] Reduced from 0.5rem to 0.3rem for tighter spacing */
+        padding: 0.2rem 0; /* [MODIFIED] Added padding for better vertical separation */
+    }
+
+    .staff-sidebar a {
+        color: var(--main-color);
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+        font-size: 1.1rem; /* [MODIFIED] Increased from default to 1.1rem for clearer text */
+        display: block; /* [MODIFIED] Changed to block for full-width clickable area and better alignment */
+        padding: 0.3rem 0.5rem; /* [MODIFIED] Added padding for better readability */
+    }
+
+        .staff-sidebar a:hover {
+            color: #a06f48;
+            font-weight: 500;
+            background-color: rgba(255, 255, 255, 0.1); /* [MODIFIED] Added subtle background on hover for clarity */
+        }
+
+.staff-content {
+    flex: 1;
+    padding: 1rem;
+}

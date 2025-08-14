@@ -1,0 +1,101 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+    --main-color: #b07c50;
+    --black: #13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255, 255, 255, .3);
+}
+
+* {
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.staff-body {
+    background-color: var(--bg) !important;
+    color: white !important;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+h3 {
+    color: var(--main-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.staff-container {
+    display: flex;
+    gap: 20px;
+    padding: 1rem;
+}
+
+.staff-products, .staff-cart {
+    flex: 1;
+}
+
+.staff-products {
+    flex: 2;
+}
+
+table {
+    width: 100px;
+    border-collapse: collapse;
+    background: var(--black);
+    border: var(--border);
+}
+
+th, td {
+    border: var(--border);
+    padding: 0.8rem;
+    text-align: left;
+}
+
+th {
+    background: #1f1f2b;
+    color: var(--main-color);
+}
+
+tr:nth-child(even) {
+    background: #1a1a23;
+}
+
+form {
+    display: inline;
+}
+
+input[type="number"] {
+    padding: 0.3rem;
+    border: var(--border);
+    background: #1f1f2b;
+    color: white;
+    width: 60px;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    background: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+    button:hover {
+        background: #a06f48;
+    }
+
+.staff-cart {
+    border-left: 1px solid #444;
+    padding-left: 16px;
+}

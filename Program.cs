@@ -2,7 +2,11 @@ using CoffeeShopWeb.Models;
 using CoffeeShopWeb.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization; // Add this namespace for CultureInfo
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -24,6 +28,17 @@ builder.Services.AddScoped<IResourceService, ResourceService>();
 builder.Services.AddScoped<IStaffBillingService, StaffBillingService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
+// Configure localization for vi-VN culture
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("vi-VN") // Use CultureInfo object instead of string
+    };
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("vi-VN");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 var app = builder.Build();
 
@@ -33,6 +48,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseRequestLocalization(); // Apply culture settings before routing
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

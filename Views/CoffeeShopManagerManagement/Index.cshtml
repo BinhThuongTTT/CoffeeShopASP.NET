@@ -22,8 +22,6 @@
 
 <a asp-action="Create" class="add-button">+ Add Manager</a>
 
-<hr>
-
 <table class="management-table">
     <thead>
         <tr>
@@ -32,21 +30,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model)
+        @if (Model.Any())
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td class="management-actions">
+                        <form asp-action="DeleteConfirmed" method="post" style="display:inline"
+                              onsubmit="return confirm('Are you sure you want to delete this manager?');">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit">Delete</button>
+                        </form>
+                        <span class="separator">|</span>
+                        <a asp-action="ResetPassword" asp-route-id="@user.Id">Reset Password</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@user.Email</td>
-                <td class="management-actions">
-                    <form asp-action="Delete" method="post" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this manager?');">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="id" value="@user.Id" />
-                        <button type="submit">🗑️</button>
-                    </form>
-                    <a asp-action="ResetPassword" asp-route-id="@user.Id">Reset Password</a>
-                </td>
+                <td colspan="2" style="text-align:center; color:gray;">No manager found</td>
             </tr>
         }
     </tbody>
 </table>
-
-<a asp-controller="CoffeeShopAdmin" class="back-button">⬅ Back</a>
+<br>
+<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">⬅ Back</a>
