@@ -1,10 +1,21 @@
 ﻿@model CoffeeShopWeb.Models.BillViewModel
+@{
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
+}
+
 <link rel="stylesheet" href="~/css/StaffStyle/Checkout.css" />
 
 <h2>Checkout</h2>
 
 <table>
-    <thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Line</th></tr></thead>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Line</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model.Items)
         {

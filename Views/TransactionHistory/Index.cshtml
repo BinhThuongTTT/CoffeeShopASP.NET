@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<CoffeeShopWeb.Models.Transaction>
+@{
+    ViewData["Title"] = "Transaction History";
+}
+<link rel="stylesheet" href="~/css/basic-page.css" />
+
 
 <h2>Transaction History</h2>
 
@@ -9,7 +14,15 @@
 </form>
 
 <table>
-    <thead><tr><th>Id</th><th>Date</th><th>Staff</th><th>Total</th><th></th></tr></thead>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Staff</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var t in Model)
         {

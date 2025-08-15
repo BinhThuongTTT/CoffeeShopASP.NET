@@ -1,4 +1,9 @@
-﻿<h2>Create Admin User</h2>
+﻿@{
+    ViewData["Title"] = "Create Admin";
+}
+<link rel="stylesheet" href="~/css/basic-page.css" />
+
+<h2>Create Admin User</h2>
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success">@TempData["Success"]</div>

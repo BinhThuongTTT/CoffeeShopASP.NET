@@ -1,4 +1,8 @@
 ﻿@model CoffeeShopWeb.Models.BillViewModel
+@{
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
+}
+
 <link rel="stylesheet" href="~/css/StaffStyle/Bill.css" />
 
 <h2>Bill</h2>
@@ -7,7 +11,14 @@
 <div>Staff: @Model.StaffId</div>
 
 <table>
-    <thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Line</th></tr></thead>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Line</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model.Items)
         {

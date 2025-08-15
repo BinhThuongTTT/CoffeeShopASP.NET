@@ -1,0 +1,120 @@
+/* Unified beautiful tab styling for CoffeeShop (applies to Bootstrap .nav-tabs/.nav-pills and optional custom .tabs) */
+/* Uses existing theme variables when available */
+:root {
+  --cs-tab-accent: var(--main-color, #b07c50);
+  --cs-tab-bg: var(--black, #1a1a1f);
+  --cs-tab-surface: var(--bg, #0b0b0d);
+  --cs-tab-border: rgba(255,255,255,0.15);
+  --cs-tab-text: rgba(255,255,255,0.85);
+  --cs-tab-text-muted: rgba(255,255,255,0.55);
+}
+
+/* Container surface for tab content */
+.tab-surface, .tab-content {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0)) var(--cs-tab-surface);
+  border: 1px solid var(--cs-tab-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Scrollable tabs on small screens */
+.nav-tabs, .nav-pills, .tabs .tab-links {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  background: transparent;
+  border-bottom: 1px solid var(--cs-tab-border);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide default tab border if Bootstrap present */
+.nav-tabs { border-bottom-color: transparent; }
+
+/* Individual tab links */
+.nav-tabs .nav-link, .nav-pills .nav-link, .tabs .tab-links a {
+  color: var(--cs-tab-text-muted);
+  border: 1px solid transparent;
+  border-radius: 999px; /* pill shape */
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* Hover/Focus state */
+.nav-tabs .nav-link:hover, .nav-pills .nav-link:hover, .tabs .tab-links a:hover,
+.nav-tabs .nav-link:focus, .nav-pills .nav-link:focus, .tabs .tab-links a:focus {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* Active tab */
+.nav-tabs .nav-link.active, .nav-pills .nav-link.active,
+.nav-tabs .nav-item.show .nav-link, .tabs .tab-links a.active {
+  color: #fff;
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05)) var(--cs-tab-accent);
+  border-color: var(--cs-tab-accent);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25), 0 0 0 2px rgba(176,124,80,0.25);
+}
+
+/* Indicator underline for tabs with non-pill layout */
+.nav-tabs .nav-link::after, .tabs .tab-links a::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: -6px;
+  height: 3px;
+  background: transparent;
+  border-radius: 2px;
+  transition: background 0.25s ease, transform 0.25s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.nav-tabs .nav-link.active::after, .tabs .tab-links a.active::after {
+  background: var(--cs-tab-accent);
+  transform: scaleX(1);
+}
+
+/* Tab content animation (Bootstrap .fade uses opacity; enhance slightly) */
+.tab-content > .tab-pane {
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.tab-content > .active {
+  transform: translateY(0);
+}
+.tab-content > .tab-pane:not(.active) {
+  transform: translateY(4px);
+}
+
+/* Compact density variant */
+.tabs-compact .nav-tabs .nav-link, .tabs-compact .nav-pills .nav-link {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+/* Dark surface edge clarity */
+.tab-surface, .tab-content {
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* Support for icons within tabs */
+.nav-tabs .nav-link i, .nav-pills .nav-link i, .tabs .tab-links i {
+  margin-right: 0.5rem;
+  opacity: 0.9;
+}
+
+/* Reduce scrollbar visual noise on webkit */
+.nav-tabs::-webkit-scrollbar, .nav-pills::-webkit-scrollbar, .tabs .tab-links::-webkit-scrollbar {
+  height: 6px;
+}
+.nav-tabs::-webkit-scrollbar-thumb, .nav-pills::-webkit-scrollbar-thumb, .tabs .tab-links::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 999px;
+}
+
