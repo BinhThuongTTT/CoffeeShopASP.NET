@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoffeeShopWeb.Models
 {
@@ -18,7 +19,9 @@ namespace CoffeeShopWeb.Models
         public decimal TotalAmount { get; set; }
 
         public List<TransactionItem> Items { get; set; } = new();
-        public DateTime TransactionDate { get; set; } = DateTime.Now;
+
+        [Column("TransactionDate")]
+        public DateTime TransactionDate { get; set; } = DateTime.UtcNow;
 
     }
 }

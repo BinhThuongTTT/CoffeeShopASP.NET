@@ -32,7 +32,7 @@ namespace CoffeeShopWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _menuService.ResetProductIdSequenceAsync();
+                
                 await _menuService.AddProductAsync(product, image);
                 TempData["Success"] = "Product added";
                 return RedirectToAction("Index");
