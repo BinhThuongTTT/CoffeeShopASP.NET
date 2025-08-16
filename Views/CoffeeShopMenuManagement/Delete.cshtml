@@ -1,4 +1,8 @@
 ﻿@model CoffeeShopWeb.Models.Product
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
 <link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
 
 <h2>Delete Product</h2>
@@ -14,4 +18,4 @@
     <button type="submit" name="decision" value="No" class="decision-no">No</button>
 </form>
 <br>
-<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button" >⬅ Back</a>
+<a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">⬅ Back</a>

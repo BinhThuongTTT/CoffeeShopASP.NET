@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Coffee Shop Manager</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/manager.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="manager-wrapper">
+        <!-- Sidebar -->
+        <div class="manager-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-user-tie"></i> Manager Panel</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a asp-controller="CoffeeShopManager" asp-action="Index" class="nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="CoffeeShopManager" asp-action="ProductAnalytics" class="nav-link">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Phân tích sản phẩm</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="CoffeeShopManager" asp-action="SalesReport" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Báo cáo bán hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="CoffeeShopManager" asp-action="InventoryReport" class="nav-link">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Báo cáo kho</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a asp-controller="CoffeeShopAccount" asp-action="Logout" class="nav-link logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="manager-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>@ViewData["Title"]</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>@User.Identity.Name</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.manager-sidebar');
+            const content = document.querySelector('.manager-content');
+            
+            sidebar.classList.toggle('collapsed');
+            content.classList.toggle('expanded');
+        }
+
+        // Auto-collapse sidebar on mobile
+        function checkScreenSize() {
+            const sidebar = document.querySelector('.manager-sidebar');
+            const content = document.querySelector('.manager-content');
+            
+            if (window.innerWidth <= 768) {
+                sidebar.classList.add('collapsed');
+                content.classList.add('expanded');
+            } else {
+                sidebar.classList.remove('collapsed');
+                content.classList.remove('expanded');
+            }
+        }
+
+        window.addEventListener('resize', checkScreenSize);
+        window.addEventListener('load', checkScreenSize);
+
+        // Highlight active nav item
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
