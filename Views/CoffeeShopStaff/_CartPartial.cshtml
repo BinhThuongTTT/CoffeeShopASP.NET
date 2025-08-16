@@ -43,11 +43,24 @@ else
         </tbody>
     </table>
 
-    <div style="margin-top:10px;">
-        <strong>Total: </strong> @cart.Sum(i => i.LineTotal).ToString("C")
-    </div>
+    <div class="cart-summary">
+        <div class="total-amount">
+            <strong>Tổng cộng: @cart.Sum(i => i.LineTotal).ToString("C", new System.Globalization.CultureInfo("vi-VN"))</strong>
+        </div>
 
-    <form asp-action="Checkout" method="get" style="margin-top:10px;">
-        <button type="submit">Checkout</button>
-    </form>
+        <div class="cart-actions">
+            <form asp-action="ClearCart" method="post" style="display: inline;">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn-clear" onclick="return confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?')">
+                    <i class="fas fa-trash"></i> Xóa tất cả
+                </button>
+            </form>
+
+            <form asp-action="Checkout" method="get" style="display: inline;">
+                <button type="submit" class="btn-checkout">
+                    <i class="fas fa-credit-card"></i> Thanh toán
+                </button>
+            </form>
+        </div>
+    </div>
 }

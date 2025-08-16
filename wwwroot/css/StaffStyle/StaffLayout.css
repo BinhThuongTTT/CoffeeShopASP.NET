@@ -51,20 +51,69 @@ html, body {
         padding: 0.2rem 0; /* [MODIFIED] Added padding for better vertical separation */
     }
 
-    .staff-sidebar a {
+    .staff-sidebar .nav-link {
         color: var(--main-color);
         text-decoration: none;
-        transition: all 0.2s ease-in-out;
-        font-size: 1.1rem; /* [MODIFIED] Increased from default to 1.1rem for clearer text */
-        display: block; /* [MODIFIED] Changed to block for full-width clickable area and better alignment */
-        padding: 0.3rem 0.5rem; /* [MODIFIED] Added padding for better readability */
+        transition: all 0.3s ease-in-out;
+        font-size: 1.1rem;
+        display: block;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 2px solid transparent;
     }
 
-        .staff-sidebar a:hover {
-            color: #a06f48;
-            font-weight: 500;
-            background-color: rgba(255, 255, 255, 0.1); /* [MODIFIED] Added subtle background on hover for clarity */
+    .staff-sidebar .nav-link i {
+        margin-right: 0.8rem;
+        width: 1.5rem;
+        text-align: center;
+    }
+
+    .staff-sidebar .nav-link:hover {
+        color: #fff;
+        background-color: var(--main-color);
+        transform: translateX(5px);
+    }
+
+    /* Special styling for Checkout button */
+    .staff-sidebar .checkout-btn {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: #fff !important;
+        font-weight: 600;
+        border: 2px solid #28a745;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        animation: pulse 2s infinite;
+    }
+
+    .staff-sidebar .checkout-btn:hover {
+        background: linear-gradient(135deg, #218838, #1ea080);
+        transform: translateX(5px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    }
+
+    /* Special styling for Logout button */
+    .staff-sidebar .logout-btn {
+        background-color: #dc3545;
+        color: #fff !important;
+        border: 2px solid #dc3545;
+    }
+
+    .staff-sidebar .logout-btn:hover {
+        background-color: #c82333;
+        border-color: #c82333;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
+        50% {
+            box-shadow: 0 4px 20px rgba(40, 167, 69, 0.5);
+        }
+        100% {
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+    }
 
 .staff-content {
     flex: 1;
