@@ -1,0 +1,401 @@
+@model CoffeeShopWeb.Models.DashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    ViewData["Title"] = "Manager Dashboard";
+}
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1><i class="fas fa-chart-line"></i> Manager Dashboard</h1>
+        <p>Chào mừng, <strong>@ViewBag.ManagerName</strong>! Đây là tổng quan về hoạt động kinh doanh.</p>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-coffee"></i>
+            </div>
+            <div class="stat-content">
+                <h3>@Model.TotalProducts</h3>
+                <p>Tổng sản phẩm</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <div class="stat-content">
+                <h3>@Model.TotalCategories</h3>
+                <p>Danh mục</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-boxes"></i>
+            </div>
+            <div class="stat-content">
+                <h3>@Model.TotalResources</h3>
+                <p>Nguyên liệu</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <div class="stat-content">
+                <h3>@Model.TodayTransactions</h3>
+                <p>Giao dịch hôm nay</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue Cards -->
+    <div class="revenue-grid">
+        <div class="revenue-card">
+            <div class="revenue-header">
+                <h3><i class="fas fa-calendar-day"></i> Doanh thu hôm nay</h3>
+            </div>
+            <div class="revenue-amount">
+                @Model.TodayRevenue.ToString("C", new System.Globalization.CultureInfo("vi-VN"))
+            </div>
+        </div>
+
+        <div class="revenue-card">
+            <div class="revenue-header">
+                <h3><i class="fas fa-calendar-alt"></i> Doanh thu tháng này</h3>
+            </div>
+            <div class="revenue-amount">
+                @Model.ThisMonthRevenue.ToString("C", new System.Globalization.CultureInfo("vi-VN"))
+            </div>
+            <div class="revenue-growth @(Model.RevenueGrowth >= 0 ? "positive" : "negative")">
+                <i class="fas fa-arrow-@(Model.RevenueGrowth >= 0 ? "up" : "down")"></i>
+                @Model.RevenueGrowth.ToString("F1")% so với tháng trước
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="top-products-section">
+        <h3><i class="fas fa-star"></i> Top 5 sản phẩm bán chạy</h3>
+        @if (Model.TopProducts.Any())
+        {
+            <div class="products-grid">
+                @foreach (var product in Model.TopProducts)
+                {
+                    <div class="product-card">
+                        <h4>@product.ProductName</h4>
+                        <div class="product-stats">
+                            <div class="stat">
+                                <span class="label">Đã bán:</span>
+                                <span class="value">@product.TotalQuantity</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Doanh thu:</span>
+                                <span class="value">@product.TotalRevenue.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-data">
+                <i class="fas fa-chart-bar"></i>
+                <p>Chưa có dữ liệu bán hàng</p>
+            </div>
+        }
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <h3><i class="fas fa-bolt"></i> Thao tác nhanh</h3>
+        <div class="actions-grid">
+            <a asp-action="ProductAnalytics" class="action-card">
+                <i class="fas fa-chart-pie"></i>
+                <h4>Phân tích sản phẩm</h4>
+                <p>Xem chi tiết về hiệu suất sản phẩm</p>
+            </a>
+
+            <a asp-action="SalesReport" class="action-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>Báo cáo bán hàng</h4>
+                <p>Theo dõi xu hướng doanh số</p>
+            </a>
+
+            <a asp-action="InventoryReport" class="action-card">
+                <i class="fas fa-warehouse"></i>
+                <h4>Báo cáo kho</h4>
+                <p>Quản lý tồn kho nguyên liệu</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.dashboard-container {
+    padding: 2rem;
+    max-width: 140rem;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.dashboard-header h1 {
+    color: #8B4513;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.dashboard-header p {
+    color: #6c757d;
+    font-size: 1.6rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: white;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+}
+
+.stat-content h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.stat-content p {
+    color: #6c757d;
+    font-size: 1.4rem;
+}
+
+.revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.revenue-card {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3);
+}
+
+.revenue-header h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.revenue-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.revenue-growth {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.revenue-growth.positive {
+    color: #d4edda;
+}
+
+.revenue-growth.negative {
+    color: #f8d7da;
+}
+
+.top-products-section {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+}
+
+.top-products-section h3 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid #8B4513;
+}
+
+.product-card h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.product-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat .label {
+    color: #6c757d;
+    font-size: 1.3rem;
+}
+
+.stat .value {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.quick-actions {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.quick-actions h3 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+}
+
+.action-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.action-card:hover {
+    background: white;
+    border-color: #8B4513;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.action-card i {
+    font-size: 3rem;
+    color: #8B4513;
+    margin-bottom: 1rem;
+}
+
+.action-card h4 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.action-card p {
+    color: #6c757d;
+    font-size: 1.3rem;
+}
+
+.no-data {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+}
+
+.no-data i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #dee2e6;
+}
+
+@@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 2.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .stats-grid,
+    .revenue-grid,
+    .products-grid,
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>

@@ -12,13 +12,13 @@
     <div class="staff-container">
         <!-- Sidebar -->
         <div class="staff-sidebar">
-            <h2>Staff</h2>
+            <h2><i class="fas fa-user-tie"></i> Staff Panel</h2>
             <ul>
-                <li><a asp-controller="CoffeeShopStaff" asp-action="Index">POS</a></li>
-                <li><a asp-controller="CoffeeShopStaff" asp-action="Checkout">Checkout</a></li>
-                <li><a asp-controller="CoffeeShopStaff" asp-action="Details">Bill History</a></li>
-                <li><a asp-controller="CoffeeShopAccount" asp-action="Logout">Logout</a></li>
-            </ul>S
+                <li><a asp-controller="CoffeeShopStaff" asp-action="Index" class="nav-link"><i class="fas fa-cash-register"></i> POS System</a></li>
+                <li><a asp-controller="CoffeeShopStaff" asp-action="Checkout" class="nav-link checkout-btn"><i class="fas fa-shopping-cart"></i> Checkout</a></li>
+                <li><a asp-controller="CoffeeShopStaff" asp-action="Details" class="nav-link"><i class="fas fa-history"></i> Bill History</a></li>
+                <li><a asp-controller="CoffeeShopAccount" asp-action="Logout" class="nav-link logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
         </div>
 
         <!-- Main content -->

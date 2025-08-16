@@ -18,7 +18,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<Context>()
     .AddDefaultTokenProviders();
 builder.Services.AddAuthorization(options =>
-    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin")));
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("ManagerOnly", policy => policy.RequireRole("Manager"));
+    options.AddPolicy("StaffOnly", policy => policy.RequireRole("Staff"));
+});
 builder.Services.ConfigureApplicationCookie(options => options.Cookie.SecurePolicy = CookieSecurePolicy.Always);
 
 builder.Services.AddScoped<ICoffeeShopMenuService, CoffeeShopMenuService>();
