@@ -3,7 +3,7 @@
 }
 <link rel="stylesheet" href="~/css/admin.css">
 <link rel="stylesheet" href="~/css/tabs.css" asp-append-version="true" />
-
+<link rel="stylesheet" href="~/css/add&delete.css" /> <!-- Added for global admin styling, optional -->
 <div class="admin-container">
     <!-- Sidebar -->
     <div class="admin-sidebar">
@@ -17,7 +17,7 @@
             <li><a asp-controller="CoffeeShopAccount" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
-
+    @RenderSection("Scripts", required: false)
     <!-- Main content -->
     <div class="admin-content">
         @RenderBody()

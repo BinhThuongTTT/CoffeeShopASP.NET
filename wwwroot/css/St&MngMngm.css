@@ -3,7 +3,7 @@
 :root {
     --main-color: #b07c50;
     --black: #13131a;
-    --bg: #010103;
+    --bg: #d4edda;
     --border: .1rem solid rgba(255,255,255,.3);
 }
 
@@ -62,21 +62,24 @@ a {
 .management-search {
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
+    flex-direction: column; /* 👈 chuyển sang dạng cột */
+    align-items: flex-start; /* căn về bên trái */
 }
 
-    .management-search input {
-        flex: 1;
-        padding: 0.5rem;
-        border: var(--border);
-        border-radius: 4px;
-        background: #1f1f2b;
-        color: white;
-    }
+.management-search input {
+    width: 100%; /* cho input chiếm full chiều ngang */
+    padding: 0.5rem;
+    border: var(--border);
+    border-radius: 4px;
+    background: #1f1f2b;
+    color: white;
+    margin-bottom: 0.5rem; /* cách nút một khoảng */
+}
 
-    .management-search button {
-        margin-left: 0.5rem;
-    }
+.management-search button {
+    align-self: flex-end; /* nếu muốn nút lệch phải */
+}
+
 
 /* ===== Table styles ===== */
 .management-table {

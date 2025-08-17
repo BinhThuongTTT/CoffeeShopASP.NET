@@ -36,8 +36,7 @@ namespace CoffeeShopWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _resourceService.AddAsync(resource);
-                await _resourceService.ResetResourceIdSequenceAsync();
+                await _resourceService.AddAsync(resource);        
                 TempData["Success"] = "Resource created successfully";
                 return RedirectToAction(nameof(Index));
             }

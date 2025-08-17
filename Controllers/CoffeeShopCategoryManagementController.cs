@@ -121,6 +121,23 @@ namespace CoffeeShopWeb.Controllers
             return View(category);
         }
 
+        // GET: Search Category
+        public async Task<IActionResult> Search(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var categories = await _context.Categories
+                .Where(c => c.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                .OrderBy(c => c.Name)
+                .ToListAsync();
+
+            ViewBag.Search = keyword;
+            return View("Index", categories); // tái sử dụng view Index
+        }
+
         // GET: Delete Category
         public async Task<IActionResult> Delete(int? id)
         {

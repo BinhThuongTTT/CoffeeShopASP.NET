@@ -1,7 +1,9 @@
 ﻿@model CoffeeShopWeb.Models.CoffeeShopLoginViewModel
 <link rel="stylesheet" href="~/css/login.css">
 <script src="~/js/login.js"></script>
-
+@{
+    Layout = null; // Or a layout without @await Html.PartialAsync("_footer")
+}
 <div class="login-wrapper">
     <!-- Left: Form -->
     <div class="login-container">

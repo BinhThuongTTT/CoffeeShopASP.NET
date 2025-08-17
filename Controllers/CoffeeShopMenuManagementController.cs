@@ -81,6 +81,26 @@ namespace CoffeeShopWeb.Controllers
             ViewBag.Categories = await _menuService.GetCategoriesAsync();
             return View(product);
         }
+        public async Task<IActionResult> Search(string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                // Nếu không nhập gì thì trả lại toàn bộ menu
+                var allProducts = await _menuService.GetProductsAsync();
+                return View("Index", allProducts);
+            }
+
+            // Lọc sản phẩm theo tên hoặc mô tả
+            var products = await _menuService.GetProductsAsync();
+            var filtered = products
+                .Where(p => p.Name.Contains(search, StringComparison.OrdinalIgnoreCase)
+                         || p.Description.Contains(search, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            // Trả View Index với danh sách lọc
+            ViewBag.Search = search;
+            return View("Index", filtered);
+        }
 
         public async Task<IActionResult> Delete(int id)
         {

@@ -3,7 +3,7 @@
 :root {
     --main-color: #b07c50;
     --black: #13131a;
-    --bg: #010103;
+    --bg: #d4edda;
     --border: .1rem solid rgba(255, 255, 255, .3);
 }
 
@@ -61,22 +61,37 @@ a {
         background: #a06f48;
     }
 
-/* Search box */
-.management-search {
+/* ===== Search form (stacked) ===== */
+.search {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column; /* xếp theo cột */
+    align-items: stretch; /* input full chiều ngang */
+    gap: 0.5rem;
 }
 
-    .management-search input {
-        padding: 0.5rem;
-        border: var(--border);
-        border-radius: 4px;
-        background: #1f1f2b;
-        color: white;
-    }
+.search input {
+    padding: 0.5rem;
+    border: var(--border);
+    border-radius: 4px;
+    background: #1f1f2b;
+    color: #fff;
+}
 
-    .management-search button {
-        margin-left: 0.5rem;
-    }
+.search button {
+    padding: 0.5rem 1rem;
+    border: var(--border);
+    border-radius: 4px;
+    background: #2d2d3a;
+    color: #fff;
+    cursor: pointer;
+    align-self: flex-end; /* nút nằm góc phải dưới input */
+}
+
+.search button:hover {
+            opacity: 0.9;
+ }
+
 
 /* Table styles */
 .management-table {
@@ -87,21 +102,33 @@ a {
     margin-top: 1rem;
 }
 
-    .management-table th,
-    .management-table td {
-        border: var(--border);
-        padding: 0.8rem;
-        text-align: left;
-    }
+.management-table th,
+.management-table td {
+    border: var(--border);
+    padding: 0.8rem;
+    text-align: center;
+    vertical-align: middle;
+}
 
-    .management-table th {
-        background: #1f1f2b;
-        color: var(--main-color);
-    }
+.management-table th {
+    background: #1f1f2b;
+    color: var(--main-color);
+}
 
-    .management-table tr:nth-child(even) {
-        background: #1a1a23;
-    }
+.management-table tr:nth-child(even) {
+    background: #1a1a23;
+}
+
+/* Image styles inside table */
+.management-table img {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
 
 /* Toast messages */
 .toast {

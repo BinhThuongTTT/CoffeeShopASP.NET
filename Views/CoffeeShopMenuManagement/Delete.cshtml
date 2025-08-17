@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<link rel="stylesheet" href="~/css/St&MngProd&Res.css" />
+<link rel="stylesheet" href="~/css/add&delete.css" />
 
 <h2>Delete Product</h2>
 @if (TempData["Error"] != null)
@@ -11,11 +11,17 @@
     <div class="error">@TempData["Error"]</div>
 }
 
-<div>Are you sure you want to delete "@Model.Name"? This action cannot be undone.</div>
-<form asp-action="DeleteConfirmed" method="post">
+<div class="delete-warning">
+    Are you sure you want to delete "@Model.Name"? This action cannot be undone.
+</div>
+
+<form asp-action="DeleteConfirmed" method="post" class="delete-form">
     <input type="hidden" asp-for="Id" />
-    <button type="submit" name="decision" value="Yes" class="decision-yes">Yes</button>
-    <button type="submit" name="decision" value="No" class="decision-no">No</button>
+    <div class="delete-actions">
+        <button type="submit" name="decision" value="Yes" class="decision-yes">Yes</button>
+        <button type="submit" name="decision" value="No" class="decision-no">No</button>
+    </div>
 </form>
+
 <br>
 <a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">⬅ Back</a>

@@ -1,0 +1,160 @@
+﻿:root {
+    --main-color: #b07c50;
+    --black: #13131a;
+    --bg: #d4edda;
+    --border: .1rem solid rgba(255, 255, 255, .3);
+}
+
+body {
+    background-color: var(--bg);
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--black);
+    padding: 2rem;
+    border: var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+    form div {
+        margin-bottom: 1.5rem;
+    }
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.7rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 0.9rem;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 0.5rem 0;
+    color: #ffffff;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--main-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    button[type="submit"]:hover {
+        background: #d9a67a;
+    }
+
+.success {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: lightgreen;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--black);
+    color: white;
+    border: var(--border);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+    .back-button:hover {
+        background: rgba(176, 124, 80, 0.1);
+        color: var(--black); /* giữ nguyên màu trắng */
+    }
+
+/* Form delete */
+form.delete-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* nút nằm bên trái */
+    gap: 1rem; /* tạo khoảng cách giữa text cảnh báo và nút */
+}
+
+/* Cảnh báo */
+.delete-warning {
+    color: #000; /* chữ đen */
+    font-weight: 500;
+}
+
+/* Nhóm nút */
+.delete-actions {
+    display: flex;
+    gap: 0.8rem; /* khoảng cách giữa 2 nút */
+}
+
+/* Style chung cho nút */
+.decision-yes, .decision-no {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Yes */
+.decision-yes {
+    background: #28a745;
+    color: #fff;
+}
+
+    .decision-yes:hover {
+        background: #218838;
+    }
+
+/* No */
+.decision-no {
+    background: #dc3545;
+    color: #fff;
+}
+
+    .decision-no:hover {
+        background: #c82333;
+    }

@@ -13,9 +13,15 @@
 }
 <a asp-action="Create" class="add-button">+ Add Product</a>
 
+<form asp-action="Search" method="get" class="search">
+    <input name="search" value="@ViewBag.Search" placeholder="Search by name or description" />
+    <button type="submit">Search</button>
+</form>
+
 <table class="management-table">
     <thead>
         <tr>
+            <th>Image</th>
             <th>Name</th>
             <th>Price</th>
             <th>Actions</th>
@@ -28,7 +34,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(product.ImagePath))
                     {
-                        <img src="@product.ImagePath" alt="@product.Name" style="width:80px; height:80px; object-fit:cover;" />
+                        <img src="@product.ImagePath" alt="@product.Name" />
                     }
                     else
                     {
@@ -45,5 +51,6 @@
         }
     </tbody>
 </table>
+
 <br>
 <a asp-controller="CoffeeShopAdmin" asp-action="Index" class="back-button">⬅ Back</a>
